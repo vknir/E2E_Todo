@@ -21,16 +21,15 @@ userRouter.post('/signup', async (req, res)=>{
         password : z.string()
     })
 
-    try{
-        userCredValidator.parse({username, password})
-
-    }catch(e)
-    {
-        console.log(e)
-        res.json({
+    
+        userCredValidator.parse({username, password}).catch((err)=>{
+            console.log(e)
+            res.json({
             message: "Invalid credentails"
+            })
         })
-    }
+
+    
 
     //generating hashed password
         bcrypt.hash(password,3, async (err, result)=>{
@@ -41,17 +40,18 @@ userRouter.post('/signup', async (req, res)=>{
         if( result)
         {
             // inserting data in User Collection
-            try{
-                await userModel.create({
+            
+             const  isCreated = await userModel.create({
                     username: username, 
                      password:result
                 });
-                res.json({message:"User added successfully"})
-             }
-            catch(e)
-            {
-                res.json({message:e})
-            }
+                if(isCreated){
+                 res.json({message:"User added successfully"})
+                }
+                     else
+                    {
+                    res.json({message:e})
+                     }
             
         }
     })
