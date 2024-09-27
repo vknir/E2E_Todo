@@ -118,6 +118,7 @@ userRouter.get('/', async (req, res)=>{
     try{
         const  result = await todolistModel.find( {userID})
         // upadte all todos on FE
+        res.json({message:"List populated"})
     }catch(e)
     {
         res.json({message:"Error while fetchin data, try again laters"})
@@ -125,15 +126,56 @@ userRouter.get('/', async (req, res)=>{
 })
 
 userRouter.post('/add', async(req, res)=>{
+        const todos= req.body.todos;
+        const  userID=req.userID
 
+        try{
+            await todolistModel.create({todos, userID})
+            res.json({message:"Todos created successfully"})
+        }catch(e)
+        {
+            console.log(e)
+            res.json({
+                message:"Error while updating "
+            })
+        }
+        
 })
 
-userRouter.put('/edit', async(req, res)=>{
+userRouter.put('/edit/:id', async(req, res)=>{
+    const todosID= new mongoose.Types.ObjectId(req.params.id)
+    const filter={_id: todosID, userID:req.userID}
     
+    const update={
+        todos: req.body.todos
+    }
+
+    const result = await todolistModel.findOneAndUpdate(filter, update)
+    if(result)
+    {
+        res.json({message: "Todos updated successfully"})
+    }
+    else{
+        res.json({message:"No such todos exists"})
+    }
 })
 
-userRouter.delete('delete/:id', async(req, res)=>{
+userRouter.delete('/delete/:id', async(req, res)=>{
+    const todosID= new mongoose.Types.ObjectId(req.params.id)
+    const filter={_id: todosID, userID:req.userID}
+    
+    const update={
+        todos: req.body.todos
+    }
 
+    const result = await todolistModel.findOneAndDelete(filter)
+    if(result)
+    {
+        res.json({message: "Todos updated successfully"})
+    }
+    else{
+        res.json({message:"No such todos exists"})
+    }
 })
 
 module.exports={
