@@ -7,7 +7,7 @@ const jwt=require('jsonwebtoken')
 const mongoose=require('mongoose')
 
 const {JWT_SECRET}=require('../config') 
-const {userModel} =require('../db')
+const {userModel, todolistModel} =require('../db')
 
 userRouter.use(bodyParser.urlencoded({extended : false}))
 
@@ -111,8 +111,29 @@ async function userAuth(req, res, next)
 
 userRouter.use(userAuth)
 
-userRouter.get('/',(req, res)=>{
+userRouter.get('/', async (req, res)=>{
     
+    const userID= req.userID
+
+    try{
+        const  result = await todolistModel.find( {userID})
+        // upadte all todos on FE
+    }catch(e)
+    {
+        res.json({message:"Error while fetchin data, try again laters"})
+    }
+})
+
+userRouter.post('/add', async(req, res)=>{
+
+})
+
+userRouter.put('/edit', async(req, res)=>{
+    
+})
+
+userRouter.delete('delete/:id', async(req, res)=>{
+
 })
 
 module.exports={
