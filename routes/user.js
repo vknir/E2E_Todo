@@ -4,7 +4,7 @@ const  {z}= require('zod')
 const bcrypt= require('bcrypt');
 const bodyParser = require('body-parser')
 const jwt=require('jsonwebtoken')
-
+const mongoose=require('mongoose')
 
 const {JWT_SECRET}=require('../config') 
 const {userModel} =require('../db')
@@ -87,6 +87,31 @@ userRouter.post('/login', async (req, res)=>{
             res.json({message:"User doesn't exists!"})
         }
 
+    
+})
+
+async function userAuth(req, res, next)
+{
+    
+    const token=req.headers.token
+    
+    const result= jwt.verify(token, JWT_SECRET)
+
+    try{
+        const mongoID= new mongoose.Types.ObjectId(result._id)
+        await userModel.findOne(mongoID); 
+
+        req.userID= mongoID
+        next();
+    }catch(e)
+    {
+        res.json({message:"Invalid token"})
+    }
+}
+
+userRouter.use(userAuth)
+
+userRouter.get('/',(req, res)=>{
     
 })
 
