@@ -1,12 +1,13 @@
 const express = require('express')
 const mongoose = require('mongoose'); 
-
+const path = require('path');
+const cors= require('cors')
 
 const {userRouter} = require('./routes/user')
 const app=express()
 
 
-app.use(express.static('public'))
+app.use(cors())
 // server only listens whe connected to DB
 async function main(){
     // await 
@@ -21,6 +22,3 @@ main()
 
 app.use('/user',userRouter)
 
-app.get('/', (req, res)=>{
-    res.render('./index.ejs');
-})

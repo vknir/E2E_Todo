@@ -17,21 +17,26 @@ userRouter.post('/signup', async (req, res)=>{
 
     // craeting user credential validator
     const  userCredValidator= z.object({
-        username :z.string(),
-        password : z.string()
-    })
-
-    
-        userCredValidator.parse({username, password}).catch((err)=>{
-            console.log(e)
+        username :z.string().catch((err)=>{
+            
+            res.json({
+            message: "Invalid credentails"
+            })
+        }),
+        password : z.string().catch((err)=>{
+            
             res.json({
             message: "Invalid credentails"
             })
         })
+    })
+
+    
+    userCredValidator.parse({username, password})
 
     
 
-    //generating hashed password
+        //generating hashed password
         bcrypt.hash(password,3, async (err, result)=>{
         if(err)
         {
@@ -40,18 +45,16 @@ userRouter.post('/signup', async (req, res)=>{
         if( result)
         {
             // inserting data in User Collection
-            
-             const  isCreated = await userModel.create({
+            try{
+             await userModel.create({
                     username: username, 
                      password:result
                 });
-                if(isCreated){
-                 res.json({message:"User added successfully"})
-                }
-                     else
-                    {
-                    res.json({message:e})
-                     }
+                res.json({message:"User added successfully!"})
+            }catch(e)
+            {
+                res.json({message:"User name already in use"})
+            }
             
         }
     })
