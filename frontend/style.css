@@ -1,0 +1,140 @@
+/* CSS Reset by https://www.joshwcomeau.com/css/custom-css-reset/ */
+
+/*
+  1. Use a more-intuitive box-sizing model.
+*/
+*, *::before, *::after {
+    box-sizing: border-box;
+  }
+  
+  /*
+    2. Remove default margin
+  */
+  * {
+    margin: 0;
+  }
+  
+  /*
+    Typographic tweaks!
+    3. Add accessible line-height
+    4. Improve text rendering
+  */
+  body {
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+  
+  /*
+    5. Improve media defaults
+  */
+  img, picture, video, canvas, svg {
+    display: block;
+    max-width: 100%;
+  }
+  
+  /*
+    6. Remove built-in form typography styles
+  */
+  input, button, textarea, select {
+    font: inherit;
+  }
+  
+  /*
+    7. Avoid text overflows
+  */
+  p, h1, h2, h3, h4, h5, h6 {
+    overflow-wrap: break-word;
+  }
+  
+  /*
+    8. Create a root stacking context
+  */
+  #root, #__next {
+    isolation: isolate;
+  }
+
+:root{
+  --body-height:100vh;
+  
+  --border-radius:.75rem;
+
+  --fs-heading:0;
+  --fs-normal:0;
+
+  --fw-bold:0;
+  --fw-normal:0;
+  
+}
+
+/* styling body */
+
+body{
+  height: 100vh;
+  background-image: linear-gradient(#9A99DB 50%,#262626 50% );
+
+  font-family: sans-serif;
+
+}
+
+/* styling  .wrapper*/
+
+.wrapper{
+
+  display: flex;
+  flex-direction: column;
+
+  justify-content: space-around;
+  align-items: center;
+  gap: 1.5rem;
+
+  flex: 1;
+
+  
+  position: absolute;
+  top:50%;
+  left:50%;
+  transform: translate(-50%,-50%);  
+  
+  background-color: white;
+  border-radius: var(--border-radius);
+  
+  padding: 3%;
+
+
+  min-width: 200px;
+  max-width: 300px;
+  
+  min-height: 300px;
+  max-height: 500px;
+}
+
+.wrapper> .wrapper-upper{
+ 
+  text-align: center;
+}
+
+.wrapper > .wrapper-middle{
+  display: flex;
+  flex-direction: column;
+
+  justify-content: space-between;
+  
+  gap: 1.2rem;
+  flex: 1;
+  
+  height: 100%;
+  
+  
+
+}
+
+.wrapper > .wrapper-lower{
+  text-align: center;
+}
+
+
+.curvy-border{
+  border-radius: var(--border-radius);
+  padding: .7rem;
+  border: 1px solid #c2c2c2;
+}

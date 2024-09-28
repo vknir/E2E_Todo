@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo List</title>
+    <link href="style.css" rel="stylesheet">
+</head>
+<body>
+    <navbar></navbar>
+
+    <main>
+        <div class="wrapper">
+            <div class="wrapper-upper">
+                <h1>Signup For ToDo List!</h1>
+            </div>
+            
+            <div class="wrapper-middle">
+                <input class="curvy-border" id="signup-username" type="text" placeholder="Username">
+
+                <input class="curvy-border" id="signup-password" type="password" placeholder="Password">
+
+                <input class="curvy-border" id="signup-confirm-password" type="text" placeholder="Confirm Password">
+
+                <button class="curvy-border" onclick="onClickSignUp()">Button</button>
+            </div>
+
+            <div class="wrapper-lower">
+                <p>Already have an account?</p>
+                <a href=""><p>Login</p></a>
+            </div>
+        </div>
+    </main>
+    
+    <footer></footer>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="server.js"></script>
+</body>
+</html>
