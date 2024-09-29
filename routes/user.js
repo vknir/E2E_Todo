@@ -40,7 +40,7 @@ userRouter.post('/signup', async (req, res)=>{
         bcrypt.hash(password,3, async (err, result)=>{
         if(err)
         {
-            res.json({message:"Error while hashing password"})
+            res.status(500).json({message:"Error while hashing password"})
         }
         if( result)
         {
@@ -50,10 +50,10 @@ userRouter.post('/signup', async (req, res)=>{
                     username: username, 
                      password:result
                 });
-                res.json({message:"User added successfully!"})
+                res.status(200).json({message:"User added successfully!"})
             }catch(e)
             {
-                res.json({message:"User name already in use"})
+                res.status(409).json({message:"User name already in use"})
             }
             
         }
@@ -76,18 +76,18 @@ userRouter.post('/login', async (req, res)=>{
                 if( response )
                 {
                     const token = jwt.sign({_id:user._id}, JWT_SECRET);
-                    res.json({token});
+                    res.status(200).json({token});
                 }else{
                     
                         {
-                            res.json({message:"Invaid Credentails"})
+                            res.status(401).json({message:"Invaid Credentails"})
                         }
                 }
             })
         }
         else
         {
-            res.json({message:"User doesn't exists!"})
+            res.status(404).json({message:"User doesn't exists!"})
         }
 
     
@@ -121,10 +121,13 @@ userRouter.get('/', async (req, res)=>{
     try{
         const  result = await todolistModel.find( {userID})
         // upadte all todos on FE
-        res.json({message:"List populated"})
+        res.status(200).json({
+            message:"List populated",
+            result:result
+        })
     }catch(e)
     {
-        res.json({message:"Error while fetchin data, try again laters"})
+        res.status(500).json({message:"Error while fetchin data, try again laters"})
     }
 })
 

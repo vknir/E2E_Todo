@@ -70,11 +70,14 @@
 
 body{
   height: 100vh;
-  background-image: linear-gradient(#9A99DB 50%,#262626 50% );
+  background-image: linear-gradient(#6d6bde 50%,#262626 50% );
 
   font-family: sans-serif;
 
 }
+
+/* styling navbar */
+
 
 /* styling  .wrapper*/
 
@@ -127,6 +130,7 @@ body{
   
 
 }
+
 
 .wrapper > .wrapper-lower{
   text-align: center;
