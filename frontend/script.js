@@ -1,4 +1,4 @@
-const url='http://localhost:3000'
+const url='https://make-a-list-server.vercel.app/'
 
 const headers={
               headers: {
