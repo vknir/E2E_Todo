@@ -102,9 +102,10 @@ async function userAuth(req, res, next)
 
     try{
         const mongoID= new mongoose.Types.ObjectId(result._id)
-        await userModel.findOne(mongoID); 
+        const user =await userModel.findOne(mongoID); 
 
         req.userID= mongoID
+        req.username=user.username
         next();
     }catch(e)
     {
@@ -123,7 +124,8 @@ userRouter.get('/', async (req, res)=>{
         // upadte all todos on FE
         res.status(200).json({
             message:"List populated",
-            result:result
+            result:result,
+            username:req.username
         })
     }catch(e)
     {
@@ -132,16 +134,17 @@ userRouter.get('/', async (req, res)=>{
 })
 
 userRouter.post('/add', async(req, res)=>{
+        
         const todos= req.body.todos;
         const  userID=req.userID
 
         try{
             await todolistModel.create({todos, userID})
-            res.json({message:"Todos created successfully"})
+            res.status(200).json({message:"Todos created successfully"})
         }catch(e)
         {
             console.log(e)
-            res.json({
+            res.status(500).json({
                 message:"Error while updating "
             })
         }

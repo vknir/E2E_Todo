@@ -12,17 +12,23 @@
    
     <main>
         <div class="wrapper">    
-            <h1>Hello </h1>
-            
-            <div class="input">
-                <input type="text" placeholder="Add a task to do">
-                
-                <button>Add</button>
+            <div class="wrapper-upper">
+                <h1 id="todo-heading"></h1>
+                <p>Add or delete items from your list</p>
             </div>
 
-            <ul id="display">
+            <div class="todo-input">
+                <input type="text" id="todo-input" class="curvy-border" placeholder="Add a task to do">
+                
+                <button onclick="onClickAddTodo()" class="curvy-border">+</button>
+            </div>
 
-            </ul>
+            <div class="todo-display">
+                <ul id="display">
+           
+
+                </ul>
+            </div>
         </div>    
     </main>
     

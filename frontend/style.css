@@ -101,13 +101,13 @@ body{
   background-color: white;
   border-radius: var(--border-radius);
   
-  padding: 3%;
+  padding: 1rem 1.25rem;
 
 
-  min-width: 200px;
+  min-width: fit-content;
   max-width: 300px;
   
-  min-height: 300px;
+  min-height: fit-content;
   max-height: 500px;
 }
 
@@ -141,4 +141,45 @@ body{
   border-radius: var(--border-radius);
   padding: .7rem;
   border: 1px solid #c2c2c2;
+}
+
+/* styling todo.html */
+
+/*styling .todo-input */
+
+.todo-input{
+  display: flex;
+  gap: 1rem;
+}
+
+
+.todo-display{
+  align-self: flex-start;
+  width: 100%;
+}
+
+.todo-display > ul{
+  margin-block: 0;
+  padding-inline: 1rem;
+  width: 100%;  
+}
+
+.todo-display > ul >li{
+  
+  list-style:circle;
+
+  border-bottom: 3px dotted #6d6bde;
+  
+}
+
+.todo-display > ul >li> div{
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.todo-display >ul >li button{
+  font-size: .6rem;
+  margin-bottom: .3rem;
+  padding: .5rem;
 }
