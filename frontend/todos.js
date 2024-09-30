@@ -1,7 +1,7 @@
 
 
 
-const url='https://e2e-todo.onrender.com/'
+const url='https://e2e-todo.onrender.com'
 
 const headers=
         { 
