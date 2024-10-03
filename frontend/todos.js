@@ -2,6 +2,7 @@
 
 
 const url='https://e2e-todo.onrender.com'
+// const url= 'http://localhost:3000'
 
 const headers=
         { 
@@ -83,4 +84,10 @@ async function onClickAddTodo()
     }})
 
     window.location.reload()
+}
+
+function signout()
+{
+    localStorage.removeItem('token');
+    location.href='login.html'
 }

@@ -1,4 +1,5 @@
 const url='https://e2e-todo.onrender.com'
+// const url= 'http://localhost:3000'
 
 const headers={
               headers: {
@@ -17,13 +18,25 @@ async function onClickSignUp()
       alert('Password dosent match ')
     }
     else{
+        
+
+        try{ 
         const response =await axios.post(url+'/user/signup',
           {username, password},
           headers   
         )
-      console.log(response.data.message);
-      console.log(window.location.href)
-      window.location.href='login.html'
+        window.location.href='login.html'
+      }catch(e)
+      {
+        if(e.response.status == 409)
+        {
+          alert('Username already in use')
+          window.location.href='index.html'
+        }
+      }
+      
+     
+      
     }
 
 }    
@@ -34,6 +47,7 @@ async function onClickLogin()
   const username = document.getElementById('login-username').value
   const password= document.getElementById('login-password').value
 
+  try{
   const response = await axios.post(url+'/user/login',
     {username, password} ,
     headers)
@@ -45,9 +59,20 @@ async function onClickLogin()
       localStorage.token=response.data.token
       window.location.href='todos.html'
     }
+  
     else{
-
+      alert('Invalid Credentials')
+      window.location.href='login.html'
     }
+  }catch(e)
+  {
+    alert('Invalid Credentials')
+      window.location.href='login.html'
+  }
 }
+
+
+
+
 
 

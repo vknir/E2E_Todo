@@ -18,7 +18,7 @@ async function main(){
     await mongoose.connect(process.env.MONGO_URL)
     app.listen(port,()=>{
         //inheriting process.env from config through userRouter
-        console.log(`Server is listening`)
+        console.log(`Server is listening on port ${port}`)
     })
 }
 
