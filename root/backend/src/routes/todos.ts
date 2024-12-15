@@ -42,22 +42,19 @@ todosRouter.post("/add", async (req, res) => {
     todoValidator.parse({ todo });
     if (req.userId) {
       const currentUserId = parseInt(req.userId);
-      const response = prisma.todos
-        .create({
-          data: {
-            todo: todo,
-            userId: currentUserId,
-            done: false,
-          },
-        })
-        .then(
-          (resolve) => {
-            res.status(200).json({ message: "todo added successfully" });
-          },
-          (reject) => {
-            res.status(500).json("cannot upadte db");
-          }
-        );
+      const response = await prisma.todos.createManyAndReturn({
+        select: { id: true , userId:true},
+        data: {
+          todo: todo,
+          userId: currentUserId,
+          done: false,
+        },
+      });
+      if (response) {
+        res
+          .status(200)
+          .json({ message: "data added successfully", response: response });
+      }
     } else {
       res.status(500).json({ message: "userid nt fund" });
     }
