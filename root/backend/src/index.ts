@@ -7,7 +7,9 @@ import cors from 'cors'
 const port = process.env.PORT || 3000;
 const app = express();
 
-app.use(cors())
+app.use(cors({
+  origin: 'https://make-a-list-lac.vercel.app'  // Replace with your actual Vercel URL
+}));
 app.use(json());
 
 app.use("/api/v1",v1Router);
