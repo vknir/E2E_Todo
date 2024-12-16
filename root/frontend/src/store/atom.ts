@@ -1,4 +1,4 @@
-import { atom, atomFamily, selector, selectorFamily } from "recoil";
+import { atom, atomFamily, selectorFamily } from "recoil";
 import axios from "axios";
 import { Todos } from "../interface";
 
