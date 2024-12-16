@@ -26,14 +26,12 @@ export default function Landing() {
 
           setTodos(data.data as Todos[]);
           setLogin(true);
-        }, (reject)=>{
-          console.log(reject)
         });
     }
   }, []);
   return (
     <div
-      className="min-h-screen h-fit w-screen flex justify-center items-start p-10 
+      className="min-h-screen h-fit w-screen flex justify-center items-start p-20 sm:p-10 
     bg-gradient-to-br from-indigo-800 from-5%  to-pink-800 to-100% font-sans
     animate-moving-gradient [background-size:300%]"
     >
