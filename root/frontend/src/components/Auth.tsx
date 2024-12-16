@@ -8,7 +8,7 @@ export default function Auth() {
   const [showSignUp, setShowSignup] = useRecoilState(showSignUpState);
   const [loading] = useRecoilState(loadingState);
   return (
-    <div className="bg-white rounded min-h-96 h-fit min-w-80 px-2 py-5 md:p-4 flex flex-col items-center gap-0.5 transition-all ease-linear">
+    <div className="bg-white rounded min-h-96 h-fit min-w-80 px-2 py-5 md:p-4 flex flex-col items-center gap-2 md:gap-0.5 transition-all ease-linear">
       <div className="flex items-center text-center">
         <p className="text-3xl font-bold text-blue-950">Make-a-List</p>
         <div></div>

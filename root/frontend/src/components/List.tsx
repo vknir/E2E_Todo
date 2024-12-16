@@ -39,7 +39,7 @@ export default function List() {
 
     axios
       .post(
-        "http://localhost:3000/api/v1/todos/add",
+        "https://e2e-todo.onrender.com/api/v1/todos/add",
         {
           todo: input,
         },
