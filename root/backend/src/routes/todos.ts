@@ -65,6 +65,7 @@ todosRouter.post("/add", async (req, res) => {
 });
 
 todosRouter.delete("/delete/:todoId", async (req, res) => {
+  try{
   if (req.userId) {
     const currentUserId = parseInt(req.userId);
     const currentTodoId = parseInt(req.params.todoId);
@@ -81,6 +82,9 @@ todosRouter.delete("/delete/:todoId", async (req, res) => {
   } else {
     res.status(400).json({ message: "user id not found" });
   }
+}catch(e){
+  res.status(400).json({message : ' eroor in deleteing'})
+}
 });
 
 export default todosRouter;

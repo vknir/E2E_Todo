@@ -15,7 +15,7 @@ export default function Delete({ id }: { id: number }) {
         return index != indexDelete;
       });
 
-      axios.delete(`http://localhost:3000/api/v1/todos/delete/${id}`, {
+      axios.delete(`https://e2e-todo.onrender.com/api/v1/todos/delete/${id}`, {
         headers: {
           authorization: localStorage.getItem("token"),
         },
@@ -23,6 +23,7 @@ export default function Delete({ id }: { id: number }) {
 
       return ans;
     });
+   
   };
 
   return (
@@ -33,7 +34,7 @@ export default function Delete({ id }: { id: number }) {
         viewBox="0 0 24 24"
         strokeWidth={1.5}
         stroke="currentColor"
-        className="size-6"
+        className="size-6 hover:text-red-500 hover:scale-110 hover:cursor-pointer"
       >
         <path
           strokeLinecap="round"

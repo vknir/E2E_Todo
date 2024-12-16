@@ -22,8 +22,9 @@ export default function Signup() {
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
     localStorage.setItem('username', username)
+    
     axios
-      .post("http://localhost:3000/api/v1/auth/signup", {
+      .post("https://e2e-todo.onrender.com/api/v1/auth/signup", {
         username: username,
         password: password,
       })
@@ -35,7 +36,9 @@ export default function Signup() {
         } else {
           setError({ present: true, type: "Unable to login" });
         }
-  });
+  
+      });
+   
   };
 
   return (
@@ -44,7 +47,7 @@ export default function Signup() {
         <form onSubmit={handleSubmit} className="flex flex-col w-full gap-6">
           <Input type="text" />
           <Input type="password" extraInput={true} />
-          <button type="submit">Sign up</button>
+          <button className="border transition-all duration-100 p-2 rounded shadow-md focus:shadow-none" type="submit">Sign up</button>
         </form>
         <div className="text-center text-sm mt-5">
           <p>Already have an account?</p>

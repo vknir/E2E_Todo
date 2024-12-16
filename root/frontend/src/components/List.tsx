@@ -1,8 +1,8 @@
-import { TodoResponse, Todos } from "../interface";
+import { TodoResponse, Todos, TodosResponse } from "../interface";
 import { todoState, loginState } from "../store/atom";
 import { useRecoilState, useSetRecoilState } from "recoil";
 import TodoItem from "./TodoItem";
-import { useState } from "react";
+import {  useEffect, useState } from "react";
 import axios from "axios";
 
 export default function List() {
@@ -13,6 +13,26 @@ export default function List() {
     [...Array(6)]
       .map(() => Math.floor(Math.random() * 36).toString(36))
       .join("");
+
+      useEffect(() => {
+        if (localStorage.getItem("token") && localStorage.getItem("username")) {
+          const username = localStorage.getItem("username");
+          axios
+            .get(`https://e2e-todo.onrender.com/api/v1/todos/${username}`, {
+              headers: {
+                authorization: localStorage.getItem("token"),
+              },
+            })
+            .then((response) => {
+              const data = response.data as TodosResponse;
+    
+              setTodo(data.data as Todos[]);
+              setLogin(true);
+            }, (reject)=>{
+              console.log(reject)
+            });
+        }
+      }, []);
 
   const handleClick = (event: React.FormEvent) => {
     event.preventDefault();
@@ -38,9 +58,10 @@ export default function List() {
           ];
         });
       });
-  };
+      setInput('')
+    };
   return (
-    <div className="bg-white rounded min-h-96 h-fit min-w-80 p-5 flex flex-col items-center gap-5">
+    <div className="bg-white rounded min-h-96 h-fit min-w-80 md:min-w-96 p-6 flex flex-col items-center gap-5">
       <div className="flex items-center text-center">
         <p className="text-3xl font-bold text-blue-950">Make-a-List</p>
       </div>
@@ -53,17 +74,19 @@ export default function List() {
       </p>
       <form
         onSubmit={handleClick}
-        className="w-full border flex justify-between text-xl p-2"
+        className="w-full border rounded border-black flex justify-between text-xl p-2"
       >
         <input
+          value={input}
           onChange={(e) => setInput(e.target.value)}
           required
           placeholder="Add your items"
-        ></input>
+          className="outline-none"
+       ></input>
         <button>+</button>
       </form>
 
-      <div className="h-64 overflow-y-auto w-full px-4">
+      <div className="h-44 overflow-y-auto w-full px-4">
         {todo.map((item, index) => {
           return (
             <TodoItem
@@ -77,8 +100,10 @@ export default function List() {
       </div>
 
       <button
+        className="border-red-300 border p-2 rounded-lg hover:scale-110 hover:bg-red-500 hover:text-white transition-all ease-linear duration-100"
         onClick={() => {
-          localStorage.clear();
+          localStorage.removeItem('token')
+          localStorage.removeItem('username')
           setLogin(false);
         }}
       >

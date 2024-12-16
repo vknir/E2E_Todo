@@ -33,7 +33,7 @@ authRouter.post("/login", async (req, res) => {
           const token = jwt.sign({ id: response.id }, secret);
           res.status(200).json({ token: token, id:response.id });
         } else {
-          throw "Wrong passworrd";
+          res.status(400).json({message:"hello"})
         }
       });
     } else {

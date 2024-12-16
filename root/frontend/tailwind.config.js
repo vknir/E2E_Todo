@@ -5,7 +5,18 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      animation:{
+        'moving-gradient':'moving-gradient 5s linear infinite'
+      },
+      keyframes:{
+        'moving-gradient':{
+          '0%':{backgroundPosition:'0% 50%'},
+          '50%':{backgroundPosition:'100% 50%'},
+          '100%':{backgroundPosition:'0% 50%'},
+        }
+      }
+    },
   },
   plugins: [],
 }

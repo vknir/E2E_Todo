@@ -47,7 +47,7 @@ export default function Input({ type, extraInput }: Props) {
                 placeholder={`Password`}
                 type={`${type}`}
                 onChange={(e) => setPassword(e.target.value)}
-                className="p-2 border rounded focus:outline-none focus:border-blue-800"
+                className="p-2 border rounded focus:outline-none focus:border-blue-800 "
               ></input>
               {extraInput ? (
                 <input
@@ -60,7 +60,7 @@ export default function Input({ type, extraInput }: Props) {
               ) : (
                 <></>
               )}
-              {error.present ? <Error type={`${error.type}`} /> : <></>}
+              {error.present && confirmPassword!='' ? <Error type={`${error.type}`} /> : <></>}
             </>
           }
         </>
@@ -71,7 +71,7 @@ export default function Input({ type, extraInput }: Props) {
             placeholder={`Username`}
             type={`${type}`}
             onChange={(e) => setUsername(e.target.value)}
-            className="p-2 border rounded focus:outline-none focus:border-blue-800"
+            className="p-2 border rounded focus:outline-none focus:border-blue-800 "
           ></input>
         </>
       )}
