@@ -46,7 +46,7 @@ export default function Input({ type, extraInput }: Props) {
                 required
                 placeholder={`Password`}
                 type={`${type}`}
-                onChange={(e) => setPassword(e.target.value)}
+                onChange={(e) => setPassword(e.target.value.trim())}
                 className="p-2 border rounded focus:outline-none focus:border-blue-800 "
               ></input>
               {extraInput ? (
@@ -54,7 +54,7 @@ export default function Input({ type, extraInput }: Props) {
                   required
                   placeholder={`Confirm Password`}
                   type={`${type}`}
-                  onChange={(e) => setConfirmPassword(e.target.value)}
+                  onChange={(e) => setConfirmPassword(e.target.value.trim())}
                   className="p-2 border rounded focus:outline-none focus:border-blue-800"
                 ></input>
               ) : (
@@ -70,7 +70,7 @@ export default function Input({ type, extraInput }: Props) {
             required
             placeholder={`Username`}
             type={`${type}`}
-            onChange={(e) => setUsername(e.target.value)}
+            onChange={(e) => setUsername(e.target.value.trim())}
             className="p-2 border rounded focus:outline-none focus:border-blue-800 "
           ></input>
         </>

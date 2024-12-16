@@ -78,7 +78,7 @@ export default function List() {
       >
         <input
           value={input}
-          onChange={(e) => setInput(e.target.value)}
+          onChange={(e) => setInput(e.target.value.trim())}
           required
           placeholder="Add your items"
           className="outline-none"
