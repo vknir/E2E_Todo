@@ -10,7 +10,7 @@ import { Todos, TodosResponse } from "../interface";
 export default function Landing() {
   const [login, setLogin] = useRecoilState(loginState);
   const setTodos = useSetRecoilState(todoState);
-  const [loading, setLoading] = useRecoilState(loadingState);
+  const [loading] = useRecoilState(loadingState);
 
   useEffect(() => {
     if (localStorage.getItem("token") && localStorage.getItem("username")) {

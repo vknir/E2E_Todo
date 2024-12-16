@@ -1,7 +1,7 @@
 import { todoState } from "../store/atom";
 import { useSetRecoilState } from "recoil";
 import axios from "axios";
-import { Todos } from "../interface";
+
 
 export default function Delete({ id }: { id: number }) {
   const setTodo = useSetRecoilState(todoState);
@@ -11,7 +11,7 @@ export default function Delete({ id }: { id: number }) {
         return element.id === id;
       });
 
-      let ans = prev.filter((element, index) => {
+      let ans = prev.filter((_element, index) => {
         return index != indexDelete;
       });
 

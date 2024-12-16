@@ -5,7 +5,8 @@ import {
   passwordState,
   errorState,
   loginState,
-  loadingState,
+  todoState,
+
 } from "../store/atom";
 import { Todos, TodosResponse, Token } from "../interface";
 import axios from "axios";
@@ -16,7 +17,7 @@ export default function Login() {
   const password = useRecoilValue(passwordState);
   const setError = useSetRecoilState(errorState);
   const setLogin = useSetRecoilState(loginState);
-  const setLoading = useSetRecoilState(loadingState);
+  const setTodos = useSetRecoilState(todoState)
   
   useEffect(() => {
     if (localStorage.getItem("token") && localStorage.getItem("username")) {
@@ -82,8 +83,5 @@ export default function Login() {
       </div>
     </div>
   );
-}
-function setTodos(arg0: Todos[]) {
-  throw new Error("Function not implemented.");
 }
 

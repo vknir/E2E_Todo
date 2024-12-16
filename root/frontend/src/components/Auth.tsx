@@ -1,4 +1,4 @@
-import { useRecoilState, useRecoilValue } from "recoil";
+import { useRecoilState } from "recoil";
 import { showSignUpState, loadingState } from "../store/atom";
 import Signup from "./Signup";
 import Login from "./Login";
@@ -6,7 +6,7 @@ import Loading from "./Loading";
 
 export default function Auth() {
   const [showSignUp, setShowSignup] = useRecoilState(showSignUpState);
-  const [loading, setLoading] = useRecoilState(loadingState);
+  const [loading] = useRecoilState(loadingState);
   return (
     <div className="bg-white rounded min-h-96 h-fit min-w-80 px-2 py-5 md:p-4 flex flex-col items-center gap-0.5 transition-all ease-linear">
       <div className="flex items-center text-center">

@@ -1,23 +1,23 @@
-import React, { useState } from "react";
+
 import Input from "./Input";
 import {
   errorState,
   usernameState,
   passwordState,
   loginState,
-  loadingState,
+
 } from "../store/atom";
-import { useSetRecoilState, useRecoilValue, useRecoilState } from "recoil";
+import { useSetRecoilState, useRecoilValue } from "recoil";
 import axios from "axios";
 import { Token } from "../interface";
-import Loading from "./Loading";
+
 
 export default function Signup() {
   const username = useRecoilValue(usernameState);
   const password = useRecoilValue(passwordState);
   const setError = useSetRecoilState(errorState);
   const setLogin = useSetRecoilState(loginState);
-  const [loading, setLoading] = useRecoilState(loadingState);
+ 
 
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
