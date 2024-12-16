@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import Error from "./Error";
 import {
   usernameState,
@@ -10,7 +10,7 @@ import { useRecoilState } from "recoil";
 import {Props} from '../interface'
 
 export default function Input({ type, extraInput }: Props) {
-  const [username, setUsername] = useRecoilState(usernameState);
+  const [, setUsername] = useRecoilState(usernameState);
   const [confirmPassword, setConfirmPassword] =
     useRecoilState(confirmPasswordState);
   const [password, setPassword] = useRecoilState(passwordState);
