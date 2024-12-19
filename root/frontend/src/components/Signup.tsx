@@ -44,7 +44,7 @@ export default function Signup() {
   return (
     <div className="mt-5 w-full px-7">
       <>
-        <form onSubmit={handleSubmit} className="flex flex-col w-full gap-6">
+        <form onSubmit={handleSubmit} className="flex flex-col w-full gap-8 md:gap-5">
           <Input type="text" />
           <Input type="password" extraInput={true} />
           <button className="border transition-all duration-100 p-2 rounded shadow-md focus:shadow-none" type="submit">Sign up</button>

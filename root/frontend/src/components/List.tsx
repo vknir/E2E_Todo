@@ -54,7 +54,7 @@ export default function List() {
         setTodo((prev) => {
           return [
             ...prev,
-            { id: todoInfo.id, userId: todoInfo.userId, todo: input },
+            { id: todoInfo.id, userId: todoInfo.userId, todo: input.trim() },
           ];
         });
       });
@@ -78,7 +78,7 @@ export default function List() {
       >
         <input
           value={input}
-          onChange={(e) => setInput(e.target.value.trim())}
+          onChange={(e) => setInput(e.target.value)}
           required
           placeholder="Add your items"
           className="outline-none"
