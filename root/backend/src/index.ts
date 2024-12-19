@@ -7,7 +7,7 @@ const port = process.env.PORT || 3000;
 const app = express();
 const domainsAllowed = [
   "https://make-a-list-lac.vercel.app",
-  "http://localhost:3000",
+  "http://localhost:5173",
 ];
 app.use(
   cors({
