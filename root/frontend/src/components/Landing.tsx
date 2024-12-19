@@ -30,6 +30,9 @@ export default function Landing() {
           setLogin(true);
         });
     }
+    ()=>{
+      localStorage.clear()
+    }
   }, []);
   return (
     <div
